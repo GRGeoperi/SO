@@ -41,8 +41,17 @@ for ((i=1; i<$EXPONENTE; i++)); do
 done
 echo "Su potencia es: $POTENCIA"
 
-
-#############################
+#### WHILE
+i=0
+#Se pide ingresar una palabra para repetirla
+read -p "Ingresa una palabra: " PALABRA
+#Se repite la palabra 10 veces
+while [ $i -lt 10 ]; do
+    echo "$i $PALABRA"
+    #Se suma al iteradora para evitar un bucle infinito
+    i=$(( $i + 1 ))
+done
+###CASE
 #Se pide ingresar un número
 read -p "Ingresa un número: " NUMERO
 #Verifica si el número es mayor, menor o igual a cero
