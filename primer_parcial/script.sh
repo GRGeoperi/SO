@@ -4,7 +4,8 @@
 # IF, FOR, WHILE, CASE.
 # Incluír variables con asignación de diferentes tipos de datos
 
-echo "Bienvenido a la calculadora escrita en shell"
+echo "¡Bienvenido a la calculadora escrita en shell!"
+
 if test "$3" = "+"; then
     SUMA=$(($1+$2))
     echo "Su suma es: $SUMA"
@@ -18,3 +19,13 @@ elif test "$3" = "/"; then
     DIVISION=$(($1/$2))
     echo "Su división es: $DIVISION"
 fi
+
+echo "~~Potencia de un número~~"
+echo -n "Escriba la base: "
+read BASE
+echo -n "Escriba el exponente: "
+read EXPONENTE
+for ((i=1; i<$EXPONENTE; i++)); do
+    POTENCIA=$(($BASE*$BASE))
+done
+echo "Su potencia es: $POTENCIA"
