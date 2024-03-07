@@ -40,3 +40,20 @@ for ((i=1; i<$EXPONENTE; i++)); do
     POTENCIA=$(($BASE*$BASE))
 done
 echo "Su potencia es: $POTENCIA"
+
+
+#############################
+#Se pide ingresar un número
+read -p "Ingresa un número: " NUMERO
+#Verifica si el número es mayor, menor o igual a cero
+case $NUMERO in
+    0)    #Si el número es cero
+        echo "El número es 0"
+        ;;
+    -*)    #Si el número es menor a cero
+        echo "El número es menor que 0"
+        ;;
+    *)    #Caso default, en este caso es mayor a cero
+        echo "El número es mayor que 0"
+        ;;
+esac
