@@ -11,6 +11,9 @@ if test "$3" = "+"; then
 elif test "$3" = "-"; then
     RESTA=$(($1-$2))
     echo "Su resta es: $RESTA"
+elif test "$3" = "*"; then
+    MULTIPLICACION=$(($1*$2))
+    echo "Su multiplicación es: $MULTIPLICACION"
 elif test "$3" = "/"; then
     DIVISION=$(($1/$2))
     echo "Su división es: $DIVISION"
