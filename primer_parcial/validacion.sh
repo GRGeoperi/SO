@@ -58,5 +58,5 @@ if test "$#" == 3; then
     propietario $3
     antiguedad $1 $2 $3
 else
-    echo "Parámetros faltantes."
+    echo "Argumentos faltantes."
 fi
