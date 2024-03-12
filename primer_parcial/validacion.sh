@@ -12,7 +12,9 @@ function lectura()
     DIRECTORIO=`pwd`
     ARCHIVO="$1"
     if test -r $DIRECTORIO/$ARCHIVO; then
-        echo "Tiene permitido leer $ARCHIVO"
+        echo "El archivo $ARCHIVO tiene permisos de lectura"
+    else
+        echo "El archivo $ARCHIVO no tiene permisos de lectura"
     fi
 }
 
@@ -21,9 +23,9 @@ function ejecucion()
     DIRECTORIO=`pwd`
     ARCHIVO="$1"
     if test -x $DIRECTORIO/$ARCHIVO; then
-        echo "Tiene permitido ejecutar $ARCHIVO"
+        echo "El archivo $ARCHIVO tiene permisos de ejecución"
     else
-        echo "No tiene permitido ejecutar $ARCHIVO"
+        echo "El archivo $ARCHIVO no tiene permisos de ejecución"
     fi
 }
 
@@ -32,9 +34,7 @@ function propietario()
     DIRECTORIO=`pwd`
     ARCHIVO="$1"
     NOMBRE=$(stat -c %U "$0")
-    if test -O $DIRECTORIO/$ARCHIVO; then
-        echo "$NOMBRE es el propietario de $ARCHIVO"
-    fi
+    echo "$NOMBRE es el propietario de $ARCHIVO"
 }
 
 function antiguedad()
@@ -52,12 +52,11 @@ function antiguedad()
     fi
 }
 
-
-if test "$#" != 0; then
+if test "$#" == 3; then
     lectura $1
     ejecucion $2
     propietario $3
     antiguedad $1 $2 $3
 else
-    echo "Argumentos faltantes."
+    echo "Parámetros faltantes."
 fi
