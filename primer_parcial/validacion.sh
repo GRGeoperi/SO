@@ -18,6 +18,17 @@ function lectura()
     fi
 }
 
+function existencia_lectura()
+{
+    DIRECTORIO=`pwd`
+    ARCHIVO="$1"
+    if test -e $DIRECTORIO/$ARCHIVO; then
+        lectura $ARCHIVO
+    else
+        echo "El archivo $ARCHIVO no existe en su directorio"
+    fi    
+}
+
 function ejecucion()
 {
     DIRECTORIO=`pwd`
@@ -29,12 +40,34 @@ function ejecucion()
     fi
 }
 
+function existencia_ejecucion()
+{
+    DIRECTORIO=`pwd`
+    ARCHIVO="$1"
+    if test -e $DIRECTORIO/$ARCHIVO; then
+        ejecucion $ARCHIVO
+    else
+        echo "El archivo $ARCHIVO no existe en su directorio"
+    fi    
+}
+
 function propietario()
 {
     DIRECTORIO=`pwd`
     ARCHIVO="$1"
     NOMBRE=$(stat -c %U "$0")
     echo "$NOMBRE es el propietario de $ARCHIVO"
+}
+
+function existencia_propietario()
+{
+    DIRECTORIO=`pwd`
+    ARCHIVO="$1"
+    if test -e $DIRECTORIO/$ARCHIVO; then
+        propietario $ARCHIVO
+    else
+        echo "El archivo $ARCHIVO no existe en su directorio"
+    fi
 }
 
 function antiguedad()
@@ -52,11 +85,24 @@ function antiguedad()
     fi
 }
 
+function existencia_antiguedad()
+{
+    DIRECTORIO=`pwd`
+    ARCHIVO_UNO="$1"
+    ARCHIVO_DOS="$2"
+    ARCHIVO_TRES="$3"
+    if [ -e $DIRECTORIO/$ARCHIVO_UNO ] && [ -e $DIRECTORIO/$ARCHIVO_DOS ] && [ -e $DIRECTORIO/$ARCHIVO_TRES ]; then
+        antiguedad $ARCHIVO_UNO $ARCHIVO_DOS $ARCHIVO_TRES
+    else
+        echo "No se puede hacer la comparación de archivos inexistentes"
+    fi
+}
+
 if test "$#" == 3; then
-    lectura $1
-    ejecucion $2
-    propietario $3
-    antiguedad $1 $2 $3
+    existencia_lectura $1
+    existencia_ejecucion $2
+    existencia_propietario $3
+    existencia_antiguedad $1 $2 $3
 else
-    echo "Argumentos faltantes."
+    echo "Argumentos faltantes"
 fi
