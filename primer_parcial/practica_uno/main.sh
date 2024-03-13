@@ -1,8 +1,12 @@
 #! /usr/bin/bash
 # * Ejercicio 1
-# ? Imprimir las últimas 15 líneas del log del sistema (/var/log/syslog) en orden alfabético,
+# ? Imprimir las últimas 15 líneas del log del sistema (/var/log/syslog) en orden inverso,
 # ? redirigir la salida estándar a un archivo de texto que se llame syslog.txt.
 # ? Redirigir los errores al archivo /dev/null
+function ejercicio_1()
+{
+    tail -15 /var/log/syslog | sort -r > syslog.txt 2> /dev/null
+}
 # * Ejercicio 2
 # ? Escribir las siguientes expresiones en el shellscript:
 # ? a) a=10
@@ -13,6 +17,21 @@
 # ? f) res = b % c
 # ? Imprime el resultado de todas las variables (revisar que el resultado de las operaciones
 # ? incluya números con decimales y negativos)
+function ejercicio_2
+{
+    A=$(echo "10" | bc)
+    echo "a = $A"
+    B=$(echo "2*10" | bc)
+    echo "b = $B"
+    C=$(echo "scale=4; $A+$B/2" | bc)
+    echo "c = $C"
+    D=$(echo "(2+3)*10" | bc)
+    echo "d = $D"
+    DIV=$(echo "scale=4; $C/2" | bc)
+    echo "div = $DIV"
+    RES=$(echo "$B%$C" | bc)
+    echo "res = $RES"
+}
 # * Ejercicio 3
 # ? Usa expresiones condicionales para validar 3 archivos. El primer archivo debe tener
 # ? permisos de lectura, el segundo debe existir y tener permisos de ejecución.
