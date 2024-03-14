@@ -166,7 +166,6 @@ function ejercicio_5()
         echo "Sin argumentos."
     fi
 }
-# ! Uso: ejercicio_5 "$@"
 # * Ejercicio 6
 # ? Que lea nombres de archivos de un archivo de texto y los copie a otro directorio.
 # ? El usuario introduce el nombre del archivo y el nombre del directorio destino.
@@ -213,7 +212,6 @@ function ejercicio_6()
         echo "Argumentos faltantes o sobrantes"
     fi
 }
-# ! Uso: ejercicio_6 "$@"
 # * Ejercicio 7
 # ? Que realice una búsqueda recursiva en un directorio de archivos de texto, encuentre todas
 # ? las ocurrencias de un patrón específico y las redirija a un archivo de resumen.
@@ -238,7 +236,6 @@ function ejercicio_7()
         echo "Argumentos faltantes o sobrantes"
     fi
 }
-# ! Uso: ejercicio_7 "$@"
 # * Menú de los ejercicios
 function menu()
 {
@@ -284,4 +281,5 @@ function menu()
         esac
     done
 }
+# ! Aquí se ejecuta la función principal
 menu "$@"
