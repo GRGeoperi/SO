@@ -141,6 +141,20 @@ function ejercicio_3 ()
 # * Ejercicio 5
 # ? Valida los argumentos de ejecución del shellscript. Si tiene argumentos que imprima
 # ? el número de argumentos y su valor, si no tiene argumentos entonces imprime “Sin argumentos”.
+function ejercicio_5()
+{
+    if test "$#" != 0; then
+        for((i=1; i<=$#; i++)); do
+            NUMERO_ARGUMENTO=$i
+            ARGUMENTO=${!i}
+            echo "Numero de argumento: $NUMERO_ARGUMENTO"
+            echo "Valor: $ARGUMENTO"
+        done
+    else
+        echo "Sin argumentos."
+    fi
+}
+# ! Uso: ejercicio_5 "$@"
 # * Ejercicio 6
 # ? Que lea nombres de archivos de un archivo de texto y los copie a otro directorio.
 # ? El usuario introduce el nombre del archivo y el nombre del directorio destino.
