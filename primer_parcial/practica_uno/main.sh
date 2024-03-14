@@ -140,6 +140,15 @@ function ejercicio_3 ()
 # Si HOSTNAME es una variable vacía o
 # tiene el valor "(none)"; entonces ...
 # if [ -z "$HOSTNAME" -o "$HOSTNAME" = "(none)" ]; then
+function ejercicio_4()
+{
+    env
+    if test -z "$HOSTNAME" -o "$HOSTNAME" = "(none)"; then
+        echo "La variable HOSTNAME está vacía o es '(none)'."
+    else
+        echo "La variable HOSTNAME es: $HOSTNAME"
+    fi
+}
 # * Ejercicio 5
 # ? Valida los argumentos de ejecución del shellscript. Si tiene argumentos que imprima
 # ? el número de argumentos y su valor, si no tiene argumentos entonces imprime “Sin argumentos”.
