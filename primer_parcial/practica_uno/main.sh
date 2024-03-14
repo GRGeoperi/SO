@@ -6,6 +6,7 @@
 function ejercicio_1()
 {
     tail -15 /var/log/syslog | sort -r > syslog.txt 2> /dev/null
+    echo "Se creó el archivo syslog.txt"
 }
 # * Ejercicio 2
 # ? Escribir las siguientes expresiones en el shellscript:
@@ -217,13 +218,70 @@ function ejercicio_6()
 # ? Que realice una búsqueda recursiva en un directorio de archivos de texto, encuentre todas
 # ? las ocurrencias de un patrón específico y las redirija a un archivo de resumen.
 # ? El usuario introduce el directorio de búsqueda y el patrón que se buscará.
-# * Ejercicio 8
-# ? Que tome la salida de múltiples comandos como entrada, combine los resultados y los
-# ? clasifique según ciertos criterios antes de escribirlos en un archivo de salida.
-# * Ejercicio 9
-# ? Que monitorice el estado del CPU, registre el modelo, número de procesadores y el uso
-# ? de cada procesador, genere un archivo de texto con los cambios cada 5 minutos.
-# ? Nota: Se puede usar el archivo /proc/cpuinfo.
-# * Ejercicio 10
-# ? Que monitorice el estado de la memoria RAM, registre la capacidad total y la memoria
-# ? disponible, genere un archivo de texto con los cambios cada 5 minutos.
+function coincidencias()
+{
+    if test "$1" == 0; then
+        DIRECTORIO="$2"
+        PATRON="$3"
+        grep -r "$PATRON" "$DIRECTORIO" > resumen.txt 2> /dev/null
+        echo "Se creó el archivo resumen.txt"
+        echo "Se creó el archivo errores_resumen.txt"
+    fi
+}
+function ejercicio_7()
+{
+    if test "$#" == 2; then
+        existencia_directorio "$1"
+        EXISTE=$?
+        coincidencias "$EXISTE" "$1" "$2"
+    else
+        echo "Argumentos faltantes o sobrantes"
+    fi
+}
+# ! Uso: ejercicio_7 "$@"
+# * Menú de los ejercicios
+function menu()
+{
+    while true
+    do
+        echo "~Menú de opciones~"
+        echo -e "\t1. Imprimir las últimas 15 líneas del syslog"
+        echo -e "\t2. Expresiones algebráicas"
+        echo -e "\t3. Expresiones condicionales"
+        echo -e "\t4. Verificar el contenido de todas las variables de entorno"
+        echo -e "\t5. Valida los argumentos de ejecución del shellscript"
+        echo -e "\t6. Leer nombres de archivos de un archivo de texto y los copiarlos a otro directorio"
+        echo -e "\t7. Búsqueda recursiva en un directorio y encontrar todas las ocurrencias de un patrón específico"
+        echo -e "\t8. Salir"
+        read -p "Elige una opción: " OPCION
+        case $OPCION in
+            1)
+                ejercicio_1
+            ;;
+            2)
+                ejercicio_2
+            ;;
+            3)
+                ejercicio_3 "$@"
+            ;;
+            4)
+                ejercicio_4
+            ;;
+            5)
+                ejercicio_5 "$@"
+            ;;
+            6)
+                ejercicio_6 "$@"
+            ;;
+            7)
+                ejercicio_7 "$@"
+            ;;
+            8)
+                break
+            ;;
+            *)
+                echo "Entrada incorrecta"
+        esac
+    done
+}
+menu "$@"
