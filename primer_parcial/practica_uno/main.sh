@@ -54,8 +54,10 @@ function existencia_lectura()
     ARCHIVO="$1"
     if test -e "$DIRECTORIO"/"$ARCHIVO"; then
         lectura "$ARCHIVO"
+        return 0
     else
         echo "El archivo $ARCHIVO no existe en su directorio"
+        return 1
     fi    
 }
 function ejecucion()
@@ -158,6 +160,50 @@ function ejercicio_5()
 # * Ejercicio 6
 # ? Que lea nombres de archivos de un archivo de texto y los copie a otro directorio.
 # ? El usuario introduce el nombre del archivo y el nombre del directorio destino.
+function existencia_directorio()
+{
+    DIRECTORIO=$1
+    if test -d "$DIRECTORIO"; then
+        echo "$DIRECTORIO es un directorio existente"
+        return 0
+    else
+        echo "$DIRECTORIO no es un directorio, crealo y vuelva a intentar"
+        return 1
+    fi
+}
+function copiar_archivos()
+{
+    if test -s "$1"; then
+        for NOMBRES_ARCHIVOS in $1; do
+            cp "$(pwd)"/"$NOMBRES_ARCHIVOS" "$2"
+            echo "Archivos copiados"
+        done
+    else
+        echo "Nota: Los nombres de archivo de su .txt deben existir en la raíz y no estar vacíos"
+    fi
+}
+function extraccion_contenido()
+{
+    if test "$1" == 0 -a "$2" == 0; then
+        NOMBRE_ARCHIVO=$3
+        DIRECTORIO=$4
+        CONTENIDO_ARCHIVO=$(cat "$NOMBRE_ARCHIVO")
+        copiar_archivos "$CONTENIDO_ARCHIVO" "$DIRECTORIO"
+    fi
+}
+function ejercicio_6()
+{
+    if test "$#" == 2; then
+        existencia_lectura "$1"
+        RESULTADO_ARCHIVO=$?
+        existencia_directorio "$2"
+        RESULTADO_DIRECTORIO=$?
+        extraccion_contenido "$RESULTADO_ARCHIVO" "$RESULTADO_DIRECTORIO" "$1" "$2"
+    else
+        echo "Argumentos faltantes o sobrantes"
+    fi
+}
+# ! Uso: ejercicio_6 "$@"
 # * Ejercicio 7
 # ? Que realice una búsqueda recursiva en un directorio de archivos de texto, encuentre todas
 # ? las ocurrencias de un patrón específico y las redirija a un archivo de resumen.
