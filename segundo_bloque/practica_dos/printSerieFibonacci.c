@@ -41,7 +41,7 @@ int main (int argc, char *argv[])
     if (argumento != 0)
     {
         resultado = fibonacci(argumento);
-        printf("%d\n", resultado);
+        printf("fib (%d) -> %d\n", argumento, resultado);
         _exit(0);
     }
     else
