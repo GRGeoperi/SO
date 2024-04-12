@@ -5,6 +5,6 @@ int main()
 {
     int pid;
     pid = getpid();
-    printf("%d\n", pid);
+    printf("id del proceso: %d\n", pid);
     _exit(0);
 }
