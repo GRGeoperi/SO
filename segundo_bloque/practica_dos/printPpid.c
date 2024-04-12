@@ -5,6 +5,6 @@ int main()
 {
     int parentPid;
     parentPid = getppid();
-    printf("%d\n", parentPid);
+    printf("id del proceso padre: %d\n", parentPid);
     _exit(0);
 }
