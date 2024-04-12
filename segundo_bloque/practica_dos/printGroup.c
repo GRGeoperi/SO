@@ -11,7 +11,7 @@ int main()
     grupo = getgrgid(pidGrupo);
     if (grupo != NULL)
     {
-        printf("id y nombre del grupo: %d -> %s\n", grupo->gr_gid, grupo->gr_name);
+        printf("id de grupo -> %d, nombre del grupo -> %s\n", grupo->gr_gid, grupo->gr_name);
         _exit(0);
     }
     else
