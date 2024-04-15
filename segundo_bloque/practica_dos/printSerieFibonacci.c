@@ -2,9 +2,9 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-int fibonacci(int N)
+size_t fibonacci(size_t N)
 {
-    int i, auxUno, auxDos, a, b, c, d;
+    size_t i, auxUno, auxDos, a, b, c, d;
     if (N <= 0)
     {
         return 0;
@@ -34,14 +34,23 @@ int fibonacci(int N)
     return (a + b);
 }
 
+void serie_fibonacci(size_t Tope)
+{
+    size_t resultado;
+    for (size_t i = 0; i <= Tope; i++)
+    {
+        resultado = fibonacci(i);
+        printf("fib (%ld) -> %ld\n", i, resultado);
+    }
+}
+
 int main (int argc, char *argv[])
 {
-    int resultado, argumento;
+    size_t argumento;
     argumento = atoi(argv[1]);
     if (argumento != 0)
     {
-        resultado = fibonacci(argumento);
-        printf("fib (%d) -> %d\n", argumento, resultado);
+        serie_fibonacci(argumento);
         _exit(0);
     }
     else
