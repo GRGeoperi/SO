@@ -34,6 +34,7 @@ int main(void)
             return 0;
         }
     }
+
     // Decrementar el valor del semáforo del padre
     operacion_p(idGrupoSemaforos, 0);
     // Imprimir la tabla correspondiente
@@ -42,6 +43,12 @@ int main(void)
     tareasRealizadas++;
     // Incrementar el valor del semáforo del primer hijo
     operacion_v(idGrupoSemaforos, 1);
+    // Esperar a que todos sus hijos terminen
+    for (int i = 1; i <= 9; i++)
+    {
+        wait(NULL);
+    }
+
     // Destruir todos los semáforos
     if (tareasRealizadas == 10)
     {
@@ -50,5 +57,6 @@ int main(void)
             destruir_semaforo(idGrupoSemaforos, i);
         }
     }
+    
     return 0;
 }
